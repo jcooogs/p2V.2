@@ -63,8 +63,6 @@ RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""retur
 ESCAPE= [\\n\\t\\'\\"\\?\\\]
 //TODO 
 STRINGLITERAL= [\"[{ESCAPE}.ˆ\"\]]*][\"]
-
- 
 IDENTIFIER= [[{LETTER}_][{LETTER}{DIGIT}_]ˆ{RESERVE}] 
 INTEGERLITERAL= [{DIGIT}+]
 
@@ -107,12 +105,23 @@ return new Symbol(sym.EOF);
             CharNum.num++;
           }
           
-{PLUSPLUS}+ { 
+"++" { 
             Symbol s = new Symbol(sym.PLUSPLUS, new TokenVal(yyline+1, CharNum.num));
-            
+                
         } 
         
-{IDENTIFIER}+ { }
+{IDENTIFIER}+ { 
+                Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext());
+                CharNum.num += yytext().length();
+                returns s;
+                }          
+               
+        
+
+}
+
+
+"==" { Symbol s = new Symbol(sym.
         
 
             
