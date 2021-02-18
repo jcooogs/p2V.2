@@ -55,9 +55,22 @@ class CharNum {
     static int num=1;
 }
 %%
-
+LETTER= [a-zA-Z] //matches any letter 
 DIGIT=        [0-9]
 SPACE=        [\040\t]
+PLUSPLUS= [++]
+RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""return"] 
+ESCAPE= [\\n\\t\\'\\"\\?\\\]
+//TODO 
+STRINGLITERAL= [\"[{ESCAPE}.ˆ\"\]]*][\"]
+
+ 
+IDENTIFIER= [[{LETTER}_][{LETTER}{DIGIT}_]ˆ{RESERVE}] 
+INTEGERLITERAL= [{DIGIT}+]
+
+
+
+
 
 %implements java_cup.runtime.Scanner
 %function next_token
@@ -93,3 +106,13 @@ return new Symbol(sym.EOF);
                          "ignoring illegal character: " + yytext());
             CharNum.num++;
           }
+          
+{PLUSPLUS}+ { 
+            Symbol s = new Symbol(sym.PLUSPLUS, new TokenVal(yyline+1, CharNum.num));
+            
+        } 
+        
+{IDENTIFIER}+ { }
+        
+
+            
