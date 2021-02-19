@@ -58,11 +58,11 @@ class CharNum {
 LETTER= [a-zA-Z] //matches any letter 
 DIGIT=        [0-9]
 SPACE=        [\040\t]
-PLUSPLUS= [++]
+PLUSPLUS= ++
 RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""return"] 
 ESCAPE= [\\n\\t\\'\\"\\?\\\]
 //TODO 
-STRINGLITERAL= [\"[{ESCAPE}.ˆ\"\]]*][\"]
+STRINGLITERAL= [ˆ\"\\"[{ESCAPE}.]]*][\"] 
 IDENTIFIER= [[{LETTER}_][{LETTER}{DIGIT}_]ˆ{RESERVE}] 
 INTEGERLITERAL= [{DIGIT}+]
 
