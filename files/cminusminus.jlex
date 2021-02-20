@@ -271,7 +271,47 @@ return new Symbol(sym.EOF);
             		Symbol s = new Symbol(sym.INT, new TokenVal(yyline+1, CharNum.num));
             		CharNum.num += yytext().length();
             		return s;
-					
+            	case("void"):
+            	    Symbol s = new Symbol(sym.VOID, new TokenVal(yyline+1, CharNum.num));
+            	    CharNum.num+=yytext().length();
+            	    return s;
+            	case("true"):
+                     Symbol s = new Symbol(sym.TRUE, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("false"):
+                     Symbol s = new Symbol(sym.FALSE, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("struct"):
+                     Symbol s = new Symbol(sym.STRUCT, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("cin"):
+                     Symbol s = new Symbol(sym.CIN, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("cout"):
+                     Symbol s = new Symbol(sym.COUT, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("if"):
+                     Symbol s = new Symbol(sym.IF, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("else"):
+                     Symbol s = new Symbol(sym.ELSE, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("while"):
+                     Symbol s = new Symbol(sym.WHILE, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+                case("return"):
+                     Symbol s = new Symbol(sym.RETURN, new TokenVal(yyline+1, CharNum.num));
+                     CharNum.num+=yytext().length();
+                     return s;
+            					
 			}
 //TODO finish reserved words
         
