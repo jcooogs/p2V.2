@@ -62,11 +62,8 @@ PLUSPLUS= ++
 RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""return"] 
 ESCAPE= [\\n\\t\\'\\"\\?\\\]
 //TODO 
-STRINGLITERAL= [ˆ\"\\"[{ESCAPE}.]]*][\"] 
-IDENTIFIER= [[{LETTER}_][{LETTER}{DIGIT}_]ˆ{RESERVE}] 
-INTEGERLITERAL= [{DIGIT}+]
-
-
+STRINGLITERAL= \"({ESCAPE}|[^\"\\\n])*\"
+IDENTIFIER= [{LETTER}_][{LETTER}{DIGIT}_]*
 
 
 
@@ -99,29 +96,104 @@ return new Symbol(sym.EOF);
             CharNum.num++;
             return s;
           }
-        
-.         { ErrMsg.fatal(yyline+1, CharNum.num,
-                         "ignoring illegal character: " + yytext());
+          
+"++" 	  { 
+            Symbol s = new Symbol(sym.PLUSPLUS, new TokenVal(yyline+1, CharNum.num));
             CharNum.num++;
+            CharNum.num++;
+            return s;  
           }
           
-"++" { 
-            Symbol s = new Symbol(sym.PLUSPLUS, new TokenVal(yyline+1, CharNum.num));
+"{" 	  { 
+            Symbol s = new Symbol(sym.LCURLY, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;
                 
-        } 
+          }
+            
+"}" 	  { 
+            Symbol s = new Symbol(sym.RCURLY, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;
+                
+          }
+          
+"(" 	  { 
+            Symbol s = new Symbol(sym.LPAREN, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;
+                
+          }  
+       
+")" 	  { 
+            Symbol s = new Symbol(sym.RPAREN, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;   
+          } 
         
-{IDENTIFIER}+ { 
-                Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext());
-                CharNum.num += yytext().length();
-                returns s;
-                }          
+";" 	  { 
+            Symbol s = new Symbol(sym.SEMICOLON, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;   
+          }
+          
+"," 	  { 
+            Symbol s = new Symbol(sym.COMMA, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;   
+          }
+          
+"." 	  { 
+            Symbol s = new Symbol(sym.DOT, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return s;   
+          }
+
+//TODO finish one/two character symbols
+
+{RESERVE} {
+			switch (yytext()) {
+				case ("bool"):
+					Symbol s = new Symbol(sym.BOOL, new TokenVal(yyline+1, CharNum.num));
+            		CharNum.num += yytext().length();
+            		return s;
+            	case ("int"):
+            		Symbol s = new Symbol(sym.INT, new TokenVal(yyline+1, CharNum.num));
+            		CharNum.num += yytext().length();
+            		return s;
+					
+			}
+//TODO finish reserved words
+        
+{IDENTIFIER} { 
+                if (!yytext().equals({RESERVE}) { // might not be able to use {RESERVE}
+                	Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext());
+                	CharNum.num += yytext().length();
+                	returns s;
+                } else {
+                	ErrMsg.fatal(yyline+1, CharNum.num,
+                         "ignoring illegal character: " + yytext());
+            		CharNum.num += yytext().length();
+            	}
+
+             }
+             
+{STRINGLITERAL} {
+					Symbol s = new Symbol(sym.STRINGLITERAL, 
+						new StrLitTokenVal(yyline+1, CharNum.num, yytext());
+                	CharNum.num += yytext().length();
+                	returns s;
+				}
                
         
 
 }
 
 
-"==" { Symbol s = new Symbol(sym.
+.         { ErrMsg.fatal(yyline+1, CharNum.num,
+                         "ignoring illegal character: " + yytext());
+            CharNum.num++;
+          }
         
 
             
