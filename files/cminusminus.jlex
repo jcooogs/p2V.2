@@ -64,6 +64,12 @@ ESCAPE= [\\n\\t\\'\\"\\?\\\]
 //TODO 
 STRINGLITERAL= \"({ESCAPE}|[^\"\\\n])*\"
 IDENTIFIER= [{LETTER}_][{LETTER}{DIGIT}_]*
+UNTERMINATEDSTRING= \"({ESCAPE}|[^\"\\\n])*\\n
+BADSTRING= \"\\[ˆnt'?"\]*\"
+UNTERMINATEDBADSTRING= \"\\[ˆnt'?"\]*\\n
+
+//Check badString (double quote issue) 
+
 
 
 
@@ -313,7 +319,6 @@ return new Symbol(sym.EOF);
                      return s;
             					
 			}
-//TODO finish reserved words
         
 {IDENTIFIER} { 
                 if (!yytext().equals({RESERVE}) { // might not be able to use {RESERVE}
@@ -334,15 +339,32 @@ return new Symbol(sym.EOF);
                 	CharNum.num += yytext().length();
                 	returns s;
 				}
-               
-        
-
 }
+{UNTERMINATEDSTRING} {
+                       ErrMsg.fatal(yyline+1, CharNum.num,
+                        "unterminated string literal ignored: " + yytext());
+                        CharNum.num+=yytext().length();
+                    }
 
 
 ("//"|"##").*	{
 					CharNum.num = yytext().length();
+					
 				}
+{BADSTRING} {
+                        ErrMsg.fatal(yyline+1, CharNum.num,
+                        "string literal with bad escaped character ignored: " + yytext());
+                        CharNum.num+=yytext().length();
+            
+    }
+{UNTERMINATEDBADSTRING} {
+                    ErrMsg.fatal(yyline+1, CharNum.num,
+                        "unterminated string literal with bad escaped character ignored: " + yytext());
+                        CharNum.num+=yytext().length();
+                    
+                    
+                    }
+
 
 
 .         { ErrMsg.fatal(yyline+1, CharNum.num,
