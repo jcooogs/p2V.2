@@ -65,7 +65,7 @@ STRINGLITERAL= \"({ESCAPE}|[^\"\\\n])*\"
 IDENTIFIER= [{LETTER}_][{LETTER}{DIGIT}_]*
 UNTERMINATEDSTRING= \"({ESCAPE}|[^\"\\\n])*\\n
 BADSTRING= \"\\[ˆnt'?\"\\]*\"
-UNTERMINATEDBADSTRING= \"\\[ˆnt'?\"\\]*\\n
+UNTERMINATEDBADSTRING= \"\\[ˆnt'?"\]*\\n
 
 %implements java_cup.runtime.Scanner
 %function next_token
@@ -314,7 +314,7 @@ return new Symbol(sym.EOF);
             					
 			}
         
-{IDENTIFIER} { 
+[{IDENTIFIER}] { 
                 if (!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while"||"return") {
                 	Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext());
                 	CharNum.num += yytext().length();
