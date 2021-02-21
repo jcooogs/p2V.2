@@ -59,7 +59,7 @@ LETTER= [a-zA-Z] //matches any letter
 DIGIT=        [0-9]
 SPACE=        [\040\t]
 PLUSPLUS= ++
-RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""return"] 
+RESERVE= ["bool""int""void""true""false""struct""cin""cout""if""else""while""return"] 
 ESCAPE= [\\n\\t\\'\\"\\?\\\]
 STRINGLITERAL= \"({ESCAPE}|[^\"\\\n])*\"
 IDENTIFIER= [{LETTER}_][{LETTER}{DIGIT}_]*
@@ -314,7 +314,7 @@ return new Symbol(sym.EOF);
 			}
         
 {IDENTIFIER} { 
-                if (!yytext().equals({RESERVE}) { // might not be able to use {RESERVE}
+                if (!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while""||"return") { // might not be able to use {RESERVE}
                 	Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext());
                 	CharNum.num += yytext().length();
                 	returns s;
