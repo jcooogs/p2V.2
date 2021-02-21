@@ -61,17 +61,11 @@ SPACE=        [\040\t]
 PLUSPLUS= ++
 RESERVE= ["bool""int""void""true""false"struct"cin""cout""if""else""while""return"] 
 ESCAPE= [\\n\\t\\'\\"\\?\\\]
-//TODO 
 STRINGLITERAL= \"({ESCAPE}|[^\"\\\n])*\"
 IDENTIFIER= [{LETTER}_][{LETTER}{DIGIT}_]*
 UNTERMINATEDSTRING= \"({ESCAPE}|[^\"\\\n])*\\n
 BADSTRING= \"\\[ˆnt'?\"\\]*\"
 UNTERMINATEDBADSTRING= \"\\[ˆnt'?\"\\]*\\n
-
-//Check badString (double quote issue) 
-
-
-
 
 %implements java_cup.runtime.Scanner
 %function next_token
