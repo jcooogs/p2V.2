@@ -310,6 +310,7 @@ return new Symbol(sym.EOF);
                      Symbol s = new Symbol(sym.RETURN, new TokenVal(yyline+1, CharNum.num));
                      CharNum.num+=yytext().length();
                      return s;
+                }
             					
 			}
         
