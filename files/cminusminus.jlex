@@ -358,7 +358,8 @@ return new Symbol(sym.EOF);
 
                     	}
 
-.         { ErrMsg.fatal(yyline+1, CharNum.num,
+.         { 
+					ErrMsg.fatal(yyline+1, CharNum.num,
                          "ignoring illegal character: " + yytext());
-            CharNum.num++;
+            		CharNum.num++;
           }
