@@ -24,6 +24,9 @@ public class P2 {
         try {
                     inFile = new FileReader("allTokens.in");
                     outFile = new PrintWriter(new FileWriter("allTokens.out"));
+                    Yylex scanner = new Yylex(inFile);
+                    Symbol token = scanner.next_token();
+                            
                 } catch (FileNotFoundException ex) {
                     System.err.println("File allTokens.in not found.");
                     System.exit(-1);
@@ -31,8 +34,7 @@ public class P2 {
                     System.err.println("allTokens.out cannot be opened.");
                     System.exit(-1);
                 }
-        Yylex scanner = new Yylex(inFile);
-        Symbol token = scanner.next_token();
+        
         
         
     }
