@@ -51,4 +51,4 @@ clean:
 
 cleantest:
 	rm -f allTokens.out
-	rm -f Output1_Drew.out
+	rm -f Test1_Drew_Actual.out
