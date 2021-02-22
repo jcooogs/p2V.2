@@ -1,1 +1,5 @@
 2:6 ***ERROR*** ignoring illegal character: #
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 8220 out of bounds for length 130
+	at Yylex.next_token(cminusminus.jlex.java:385)
+	at P2.test2(P2.java:322)
+	at P2.main(P2.java:23)

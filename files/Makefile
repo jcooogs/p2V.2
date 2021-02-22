@@ -36,9 +36,11 @@ ErrMsg.class: ErrMsg.java
 # to expected results
 ###
 test:
-	java -cp $(CP) P2 2> errors.out 
+	java -cp $(CP) P2 ##2> errors.out 
 	diff allTokens.in allTokens.out
 	diff Test1_Drew_Expected.out Test1_Drew_Actual.out
+	diff test2ReserveExpected.out test2.out
+	##diff test3IntLiteralExpectedOut test3Out
 	diff errors.out expected_errors.out
 	
 
@@ -52,3 +54,7 @@ clean:
 cleantest:
 	rm -f allTokens.out
 	rm -f Test1_Drew_Actual.out
+	rm -f test2.out
+	rm -f test3.out
+	
+	
