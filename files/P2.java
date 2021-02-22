@@ -17,6 +17,25 @@ public class P2 {
     
         // ADD CALLS TO OTHER TEST METHODS HERE
     }
+    
+    public static void test1(){
+        FileReader inFile = null; 
+        PrintWriter outFile = null;
+        try {
+                    inFile = new FileReader("allTokens.in");
+                    outFile = new PrintWriter(new FileWriter("allTokens.out"));
+                } catch (FileNotFoundException ex) {
+                    System.err.println("File allTokens.in not found.");
+                    System.exit(-1);
+                } catch (IOException ex) {
+                    System.err.println("allTokens.out cannot be opened.");
+                    System.exit(-1);
+                }
+        Yylex scanner = new Yylex(inFile);
+        Symbol token = scanner.next_token();
+        
+        
+    }
 
     /**
      * testAllTokens
