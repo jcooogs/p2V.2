@@ -16,8 +16,8 @@ public class P2 {
         CharNum.num = 1;
     
         // ADD CALLS TO OTHER TEST METHODS HERE
-        test1();
-        CharNum.num = 1;
+        //test1();
+        //CharNum.num = 1;
     }
     
     public static void test1() throws IOException {

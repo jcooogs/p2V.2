@@ -38,7 +38,7 @@ ErrMsg.class: ErrMsg.java
 test:
 	java -cp $(CP) P2 
 	diff allTokens.in allTokens.out
-	diff Test1_Drew.in Output1_Drew.out
+	
 
 ###
 # clean up
