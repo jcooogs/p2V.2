@@ -76,7 +76,7 @@ return new Symbol(sym.EOF);
 %eofval}
 
 %line
-
+%char
 %%
 
 {DIGIT}+  { 
@@ -313,30 +313,32 @@ return new Symbol(sym.EOF);
                 }
             					
 			}
-        
 {IDENTIFIER} { 
+<<<<<<< HEAD
                 if (!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while"||"return")) {
+=======
+              if(!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while"||"return")) {
+>>>>>>> branch 'main' of https://github.com/jcooogs/p2V.2.git
                 	Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext()));
                 	CharNum.num += yytext().length();
                 	returns s;
-                } else {
+                }else{
                 	ErrMsg.fatal(yyline+1, CharNum.num,
                          "ignoring illegal character: " + yytext());
             		CharNum.num += yytext().length();
             	}
 
              }
-             
 {STRINGLITERAL} {
 					Symbol s = new Symbol(sym.STRINGLITERAL, 
-						new StrLitTokenVal(yyline+1, CharNum.num, yytext());
+						new StrLitTokenVal(yyline+1, CharNum.num, yytext()));
                 	CharNum.num += yytext().length();
                 	returns s;
 				}
 
 {UNTERMINATEDSTRING} {
                        ErrMsg.fatal(yyline+1, CharNum.num,
-                        "unterminated string literal ignored";
+                        "unterminated string literal ignored");
                         CharNum.num+=yytext().length();
                     }
 
@@ -347,14 +349,14 @@ return new Symbol(sym.EOF);
 				
 {BADSTRING} 	{
                         ErrMsg.fatal(yyline+1, CharNum.num,
-                        "string literal with bad escaped character ignored";
+                        "string literal with bad escaped character ignored");
                         CharNum.num+=yytext().length();
             
     			}
     			
 {UNTERMINATEDBADSTRING} {
                     		ErrMsg.fatal(yyline+1, CharNum.num,
-                        	"unterminated string literal with bad escaped character ignored";
+                        	"unterminated string literal with bad escaped character ignored");
                         	CharNum.num+=yytext().length();
 
                     	}
