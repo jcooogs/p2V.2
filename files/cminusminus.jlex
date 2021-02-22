@@ -313,9 +313,14 @@ return new Symbol(sym.EOF);
                 }
             					
 			}
+<<<<<<< HEAD
         
 [{IDENTIFIER}] { 
                 if (!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while"||"return") {
+=======
+{IDENTIFIER} { 
+                if(!yytext().equals("bool"||"int"||"void"||"true"||"false"||"struct"||"cin"||"cout"||"if"||"else"||"while"||"return") {
+>>>>>>> branch 'main' of https://github.com/jcooogs/p2V.2.git
                 	Symbol s = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext()));
                 	CharNum.num += yytext().length();
                 	returns s;
