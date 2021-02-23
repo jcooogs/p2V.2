@@ -84,7 +84,7 @@ public class P2 {
               outFile.println(((IdTokenVal)token.value).idVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
               break;
           case sym.INTLITERAL:  
-              outFile.println(((IntLitTokenVal)token.value).intVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
+              outFile.println("" + ((IntLitTokenVal)token.value).intVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
               break;
           case sym.STRINGLITERAL: 
               outFile.println(((StrLitTokenVal)token.value).strVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
@@ -231,10 +231,10 @@ public class P2 {
               outFile.println("return" + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
               break;
           case sym.ID:
-              outFile.println(((IdTokenVal)token.value).idVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
+              outFile.println("" + ((IdTokenVal)token.value).idVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
               break;
           case sym.INTLITERAL:  
-              outFile.println(((IntLitTokenVal)token.value).intVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
+              outFile.println("" + ((IntLitTokenVal)token.value).intVal +  ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
               break;
           case sym.STRINGLITERAL: 
               outFile.println(((StrLitTokenVal)token.value).strVal + ((TokenVal)token.value).linenum + "-" + ((TokenVal)token.value).charnum);
