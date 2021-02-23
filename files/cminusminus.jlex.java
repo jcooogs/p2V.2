@@ -413,18 +413,20 @@ return new Symbol(sym.EOF);
 						break;
 					case 2:
 						{ 
+            try{
             int val = Integer.parseInt(yytext());
-            if (val > Integer.MAX_VALUE) {
-            	ErrMsg.warn(yyline+1, CharNum.num, "integer literal too large; using max value");
-            	Symbol s = new Symbol(sym.INTLITERAL,
-                             new IntLitTokenVal(yyline+1, CharNum.num, Integer.MAX_VALUE));
-            	CharNum.num += yytext().length();
-            	return s;
+             Symbol s = new Symbol(sym.INTLITERAL,
+                                         new IntLitTokenVal(yyline+1, CharNum.num, val));
+                        CharNum.num += yytext().length();
+                        return s;
             }
-            Symbol s = new Symbol(sym.INTLITERAL,
-                             new IntLitTokenVal(yyline+1, CharNum.num, val));
-            CharNum.num += yytext().length();
-            return s;
+            catch(Exception e) {
+            ErrMsg.warn(yyline+1, CharNum.num, "integer literal too large; using max value");
+                        	Symbol s = new Symbol(sym.INTLITERAL,
+                                         new IntLitTokenVal(yyline+1, CharNum.num, Integer.MAX_VALUE));
+                        	CharNum.num += yytext().length();
+                        	return s;
+            }
           }
 					case -3:
 						break;

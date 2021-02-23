@@ -42,6 +42,8 @@ test:
 	diff Test2_Drew_Expected.out Test2_Drew_Actual.out
 	diff Test3_Drew_Expected.out Test3_Drew_Actual.out
 	diff Test4_Drew_Expected.out Test4_Drew_Actual.out
+	diff Test5_Drew_Expected.out Test5_Drew_Actual.out
+	diff Test6_Drew_Expected.out Test5_Drew_Actual.out
 	##diff errors.out expected_errors.out
 	
 
@@ -58,5 +60,7 @@ cleantest:
 	rm -f Test2_Drew_Actual.out
 	rm -f Test3_Drew_Actual.out
 	rm -f Test4_Drew_Actual.out
+	rm -f Test5_Drew_Actual.out
+	rm -f Test6_Drew_Actual.out
 	
 	
